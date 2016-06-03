@@ -22,8 +22,7 @@ public class Map {
 				return;
 			}
 
-		int newSize = size + 1;
-		if (newSize > keys.length) {
+		if (shouldGrow()) {
 			Object[] newKeys = new Object[keys.length + INITIAL_CAPACITY];
 			Object[] newValues = new Object[keys.length + INITIAL_CAPACITY];
 			System.arraycopy(keys, 0, newKeys, 0, size);
@@ -36,6 +35,10 @@ public class Map {
 		values[size] = value;
 		size++;
 
+	}
+
+	private boolean shouldGrow() {
+		return size + 1 > keys.length;
 	}
 
 	public int size() {
