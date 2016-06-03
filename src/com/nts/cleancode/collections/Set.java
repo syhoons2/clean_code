@@ -1,11 +1,6 @@
 package com.nts.cleancode.collections;
 
 public class Set extends AbstractCollection {
-	private static int INITIAL_CAPACITY = 10;
-	public boolean isEmpty() {
-		return size == 0;
-	}
-
 	public void add(Object element) {
 		if (readOnly)
 			return;
@@ -17,35 +12,5 @@ public class Set extends AbstractCollection {
 		if (contains(element))
 			return;
 		addElement(element);
-	}
-
-	protected void addElement(Object element) {
-		elements[size++] = element;
-	}
-
-	protected boolean shouldGrow() {
-		return size + 1 > elements.length;
-	}
-
-	protected void grow() {
-		Object[] newElements = new Object[elements.length + INITIAL_CAPACITY];
-		for (int i = 0; i < size; i++)
-			newElements[i] = elements[i];
-		elements = newElements;
-	}
-
-	public boolean contains(Object element) {
-		for (int i = 0; i < size; i++)
-			if (elements[i].equals(element))
-				return true;
-		return false;
-	}
-
-	public int size() {
-		return size;
-	}
-
-	public int capacity() {
-		return elements.length;
 	}
 }
