@@ -51,18 +51,22 @@ public class Set extends AbstractCollection {
 			return false;
 		for (int i = 0; i < size; i++)
 			if (elements[i].equals(element)) {
-				elements[i] = null;
-				Object[] newElements = new Object[size - 1];
-				int k = 0;
-				for (int j = 0; j < size; j++) {
-					if (elements[j] != null)
-						newElements[k++] = elements[j];
-				}
-				size--;
-				elements = newElements;
+				removeElementAt(i);
 				return true;
 			}
 		return false;
+	}
+
+	protected void removeElementAt(int i) {
+		elements[i] = null;
+		Object[] newElements = new Object[size - 1];
+		int k = 0;
+		for (int j = 0; j < size; j++) {
+			if (elements[j] != null)
+				newElements[k++] = elements[j];
+		}
+		size--;
+		elements = newElements;
 	}
 
 	
