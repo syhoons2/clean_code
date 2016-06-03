@@ -1,3 +1,10 @@
 .classpath
+.git/
+.mvn/
 .project
-/bin
+.settings/
+target/
+/clean_code/
+.idea/
+*.iml
+bin/
