@@ -11,20 +11,33 @@ public class Set extends AbstractCollection {
 	}
 
 	public void add(Object element) {
-		if (!readOnly) {
-			int newSize = size + 1;
-			if (newSize > elements.length) {
-				Object[] newElements =
-					new Object[elements.length + INITIAL_CAPACITY];
-				for (int i = 0; i < size; i++)
-					newElements[i] = elements[i];
-				elements = newElements;
-			}
+		if (readOnly)
+			return;
 
-			if (contains(element))
-				return;
-			elements[size++] = element;
+		if (shouldGrow()) {
+			grow();
 		}
+
+		if (contains(element))
+			return;
+		addElement(element);
+	}
+
+	protected void addElement(Object element) {
+		elements[size++] = element;
+	}
+	
+
+	protected boolean shouldGrow() {
+		return size + 1 > elements.length;
+	}
+
+	protected void grow() {
+		Object[] newElements =
+			new Object[elements.length + INITIAL_CAPACITY];
+		for (int i = 0; i < size; i++)
+			newElements[i] = elements[i];
+		elements = newElements;
 	}
 
 	public boolean contains(Object element) {
