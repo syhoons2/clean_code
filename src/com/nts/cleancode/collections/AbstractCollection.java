@@ -2,17 +2,16 @@ package com.nts.cleancode.collections;
 
 public abstract class AbstractCollection {
 	protected Object[] elements = new Object[10];
+	protected boolean readOnly;
 
 	public void addAll(AbstractCollection collection) {
-		
-			
-			for (int i = 0; i < collection.size(); i++) {
-				if (!contains(collection.get(i))) {
-					add(collection.get(i));
-				}
-			}
 
-		
+		for (int i = 0; i < collection.size(); i++) {
+			if (!contains(collection.get(i))) {
+				add(collection.get(i));
+			}
+		}
+
 	}
 
 	public void add(Object key, Object value) {
@@ -30,5 +29,9 @@ public abstract class AbstractCollection {
 
 	public Object get(int i) {
 		return elements[i];
+	}
+
+	public void setReadOnly(boolean b) {
+		readOnly = b;
 	}
 }

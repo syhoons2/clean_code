@@ -3,8 +3,6 @@ package com.nts.cleancode.collections;
 public class Set extends AbstractCollection {
 	private static int INITIAL_CAPACITY = 10;
 	private int size = 0;
-	private boolean readOnly;
-
 	public boolean isEmpty() {
 		return size == 0;
 	}
@@ -71,9 +69,5 @@ public class Set extends AbstractCollection {
 
 	public int capacity() {
 		return elements.length;
-	}
-
-	public void setReadOnly(boolean b) {
-		readOnly = b;
 	}
 }
