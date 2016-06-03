@@ -2,7 +2,6 @@ package com.nts.cleancode.collections;
 
 public class Set extends AbstractCollection {
 	private static int INITIAL_CAPACITY = 10;
-	private int size = 0;
 	public boolean isEmpty() {
 		return size == 0;
 	}
@@ -45,31 +44,6 @@ public class Set extends AbstractCollection {
 	public int size() {
 		return size;
 	}
-
-	public boolean remove(Object element) {
-		if (readOnly)
-			return false;
-		for (int i = 0; i < size; i++)
-			if (elements[i].equals(element)) {
-				removeElementAt(i);
-				return true;
-			}
-		return false;
-	}
-
-	protected void removeElementAt(int i) {
-		elements[i] = null;
-		Object[] newElements = new Object[size - 1];
-		int k = 0;
-		for (int j = 0; j < size; j++) {
-			if (elements[j] != null)
-				newElements[k++] = elements[j];
-		}
-		size--;
-		elements = newElements;
-	}
-
-	
 
 	public int capacity() {
 		return elements.length;

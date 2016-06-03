@@ -10,9 +10,9 @@ import com.nts.cleancode.collections.List;
 import com.nts.cleancode.collections.Set;
 
 public class SetTest {
-	private Set empty;
-	private Set oneElement;
-	private Set manyElement;
+	private AbstractCollection empty;
+	private AbstractCollection oneElement;
+	private AbstractCollection manyElement;
 
 	@Before
 	public void setUp() {
@@ -82,7 +82,7 @@ public class SetTest {
 
 	@Test
 	public void addAllWithDuplicates() {
-		Set newSet = new Set();
+		AbstractCollection newSet = new Set();
 		newSet.add("josh");
 		manyElement.addAll(newSet);
 		assertEquals(2, manyElement.size());
