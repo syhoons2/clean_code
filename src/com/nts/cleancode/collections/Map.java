@@ -17,27 +17,29 @@ public class Map {
 	}
 
 	public void add(Object key, Object value) {
-		if (!readOnly) {
-			for (int i = 0; i < size; i++)
-				if (keys[i].equals(key)) {
-					values[i] = value;
-					return;
-				}
+		if (readOnly)
+			return;
 
-			int newSize = size + 1;
-			if (newSize > keys.length) {
-				Object[] newKeys = new Object[keys.length + INITIAL_CAPACITY];
-				Object[] newValues = new Object[keys.length + INITIAL_CAPACITY];
-				System.arraycopy(keys, 0, newKeys, 0, size);
-				System.arraycopy(values, 0, newValues, 0, size);
-				keys = newKeys;
-				values = newValues;
+		for (int i = 0; i < size; i++)
+			if (keys[i].equals(key)) {
+				values[i] = value;
+				return;
 			}
 
-			keys[size] = key;
-			values[size] = value;
-			size++;
+		int newSize = size + 1;
+		if (newSize > keys.length) {
+			Object[] newKeys = new Object[keys.length + INITIAL_CAPACITY];
+			Object[] newValues = new Object[keys.length + INITIAL_CAPACITY];
+			System.arraycopy(keys, 0, newKeys, 0, size);
+			System.arraycopy(values, 0, newValues, 0, size);
+			keys = newKeys;
+			values = newValues;
 		}
+
+		keys[size] = key;
+		values[size] = value;
+		size++;
+
 	}
 
 	public int size() {
