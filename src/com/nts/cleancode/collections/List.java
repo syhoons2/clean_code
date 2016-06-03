@@ -1,7 +1,6 @@
 package com.nts.cleancode.collections;
 
 public class List extends AbstractCollection {
-	private Object[] elements = new Object[10];
 	private int size = 0;
 	private boolean readOnly;
 
@@ -25,8 +24,7 @@ public class List extends AbstractCollection {
 	}
 
 	protected void grow() {
-		Object[] newElements =
-			new Object[elements.length + 10];
+		Object[] newElements = new Object[elements.length + 10];
 		for (int i = 0; i < size; i++)
 			newElements[i] = elements[i];
 		elements = newElements;
@@ -37,7 +35,7 @@ public class List extends AbstractCollection {
 	}
 
 	public boolean contains(Object element) {
-		for (int i=0; i<size; i++) 
+		for (int i = 0; i < size; i++)
 			if (elements[i].equals(element))
 				return true;
 		return false;
@@ -50,7 +48,7 @@ public class List extends AbstractCollection {
 	public boolean remove(Object element) {
 		if (readOnly)
 			return false;
-		else 	
+		else
 			for (int i = 0; i < size; i++)
 				if (elements[i].equals(element)) {
 					elements[i] = null;
@@ -65,10 +63,6 @@ public class List extends AbstractCollection {
 					return true;
 				}
 		return false;
-	}
-	
-	public Object get(int i) {
-		return elements[i];
 	}
 
 	public int capacity() {
