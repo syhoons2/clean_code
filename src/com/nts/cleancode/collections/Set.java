@@ -1,16 +1,12 @@
 package com.nts.cleancode.collections;
 
 public class Set extends AbstractCollection {
+	@Override
 	public void add(Object element) {
-		if (readOnly)
-			return;
-
-		if (shouldGrow()) {
-			grow();
-		}
 
 		if (contains(element))
 			return;
-		addElement(element);
+
+		super.add(element);
 	}
 }
